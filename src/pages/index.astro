@@ -1,11 +1,22 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+    <header class="px-4 py-12 max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl mb-6 leading-tight">
+            <span class="bg-clip-text text-blue-600">T</span>ime-series,
+            <span class="bg-clip-text text-blue-600">I</span>maging,
+
+            <br class="hidden md:block" />
+
+            <span class="bg-clip-text text-blue-600">D</span>igital Health &
+            <br class="hidden md:block" />
+            <span class="bg-clip-text text-blue-600">E</span>ngineering.
+        </h1>
+
+        <p class="text-lg text-slate-600 leading-relaxed mb-10 sm:text-xl">
+            我们致力于通过跨学科工程技术，解决医疗与工业领域中最具挑战性的时间序列与影像分析问题。
+        </p>
+    </header>
 </Layout>
