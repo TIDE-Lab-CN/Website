@@ -1,34 +1,34 @@
 ---
 import { getCollection } from 'astro:content';
+import AlumniCard from '../components/AlumniCard.astro';
 import FacultyCard from '../components/FacultyCard.astro';
 import StudentCard from '../components/StudentCard.astro';
 import Layout from '../layouts/Layout.astro';
 
-const allMembers = await getCollection('members');
+const faculty = (await getCollection('faculty'))
+  .sort((a, b) => a.data.order - b.data.order);
 
-const faculty = allMembers
-  .filter(m => m.data.role === 'faculty')
-  .sort((a, b) => (a.data.order || 100) - (b.data.order || 100));
+const students = (await getCollection('student'))
+  .sort((a, b) => {
+    if (a.data.year !== b.data.year) {
+      return a.data.year - b.data.year;
+    } else if (a.data.order !== b.data.order) {
+      return a.data.order - b.data.order;
+    } else {
+      return a.data.name.localeCompare(b.data.name, 'zh-CN');
+    }
+  });
 
-const students = allMembers
-  .filter(m => m.data.role === 'student')
-  .sort((a, b) => (a.data.order || 100) - (b.data.order || 100));
-
-const studentsByYear = students.reduce<Record<string, any[]>>(
-  (acc, student) => {
-    const year = student.data.order?.toString() || 'Others';
-    if (!acc[year]) acc[year] = [];
-    acc[year].push(student);
-    return acc;
-  },
-  {},
-);
-
-const years = Object.keys(studentsByYear).sort((a, b) => {
-  if (a === 'Others') return 1;
-  if (b === 'Others') return -1;
-  return Number(b) - Number(a);
-});
+const alumni = (await getCollection('alumni'))
+  .sort((a, b) => {
+    if (a.data.year !== b.data.year) {
+      return a.data.year - b.data.year;
+    } else if (a.data.order !== b.data.order) {
+      return a.data.order - b.data.order;
+    } else {
+      return a.data.name.localeCompare(b.data.name, 'zh-CN');
+    }
+  });
 ---
 
 <Layout title="团队人员">
@@ -53,20 +53,28 @@ const years = Object.keys(studentsByYear).sort((a, b) => {
       </section>
     )}
 
-    {years.map((year) => (
+    {students.length > 0 && (
       <section>
         <div class="flex items-center gap-4 mb-10">
-          <h2 class="text-2xl font-bold text-slate-900">
-            {year === 'Others' ? '更多成员' : `${year} 级`}
-          </h2>
+          <h2 class="text-2xl font-bold text-slate-900">在读学生</h2>
           <div class="h-px bg-slate-100 grow"></div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-10">
-          {studentsByYear[year].map((member) => (
-            <StudentCard member={member} />
-          ))}
+          {students.map((member) => <StudentCard member={member} />)}
         </div>
       </section>
-    ))}
+    )}
+
+    {alumni.length > 0 && (
+      <section>
+        <div class="flex items-center gap-4 mb-10">
+          <h2 class="text-2xl font-bold text-slate-900">毕业校友</h2>
+          <div class="h-px bg-slate-100 grow"></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-10">
+          {alumni.map((member) => <AlumniCard member={member} />)}
+        </div>
+      </section>
+    )}
   </main>
 </Layout>

@@ -1,13 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { render } from 'astro:content';
-import { RESEARCH_DIRECTIONS } from '../consts';
 
 const { member } = Astro.props;
-const { name, avatar, direction, email } = member.data;
+const { name, avatar, email } = member.data;
 
 const { Content } = await render(member);
-const directionInfo = RESEARCH_DIRECTIONS.find(d => d.id === direction);
 ---
 
 <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden md:flex shadow-sm transition-all duration-500">
@@ -31,14 +29,6 @@ const directionInfo = RESEARCH_DIRECTIONS.find(d => d.id === direction);
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
       <div class="flex items-center gap-3">
         <h3 class="text-2xl font-bold text-slate-900">{name}</h3>
-        {directionInfo && (
-          <span
-            class="px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-white shadow-sm"
-            style={{ backgroundColor: directionInfo.color }}
-          >
-            {directionInfo.label}
-          </span>
-        )}
       </div>
       <a
         href={`mailto:${email}`}

@@ -31,10 +31,5 @@
     "eslint-plugin-vue": "^10.8.0",
     "typescript-eslint": "^8.57.2",
     "vue-eslint-parser": "^10.4.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "^8.0.0"
-    }
   }
 }

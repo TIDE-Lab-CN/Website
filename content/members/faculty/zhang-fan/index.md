@@ -1,8 +1,5 @@
 ---
 name: "张帆"
-role: "faculty"
-direction: "imaging"
-order: 1
 email: "zhanfan51@sina.com"
 avatar: "./profile.png"
 ---
