@@ -1,3 +1,39 @@
+<script setup>
+import { onMounted, ref } from 'vue';
+
+import { ROUTES } from '../constants.ts';
+
+const isOpen = ref(false);
+const currentPath = ref('/');
+
+function updateRoutePath() {
+  currentPath.value = window.location.pathname;
+}
+
+function listenAstroSwap() {
+  document.addEventListener('astro:after-swap', () => {
+    isOpen.value = false;
+  });
+}
+
+onMounted(() => {
+  updateRoutePath();
+  listenAstroSwap();
+});
+</script>
+
+<!--suppress CssUnusedSymbol -->
+<style scoped>
+.vp-menu-enter-active, .vp-menu-leave-active {
+  transition: opacity 0.2s ease, transform 0.25s ease-out;
+}
+
+.vp-menu-enter-from, .vp-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+</style>
+
 <template>
   <nav class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-sm w-full h-16 flex items-center">
     <div class="mx-auto max-w-5xl px-4 md:px-6 w-full flex items-center justify-between">
@@ -75,38 +111,3 @@
     </div>
   </Transition>
 </template>
-
-<script setup>
-import { onMounted, ref } from 'vue';
-import { ROUTES } from '../route.ts';
-
-const isOpen = ref(false);
-const currentPath = ref('/');
-
-function updateRoutePath() {
-  currentPath.value = window.location.pathname;
-}
-
-function listenAstroSwap() {
-  document.addEventListener('astro:after-swap', () => {
-    isOpen.value = false;
-  });
-}
-
-onMounted(() => {
-  updateRoutePath();
-  listenAstroSwap();
-});
-</script>
-
-<!--suppress CssUnusedSymbol -->
-<style scoped>
-.vp-menu-enter-active, .vp-menu-leave-active {
-  transition: opacity 0.2s ease, transform 0.25s ease-out;
-}
-
-.vp-menu-enter-from, .vp-menu-leave-to {
-  opacity: 0;
-  transform: translateY(-5px);
-}
-</style>

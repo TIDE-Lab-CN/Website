@@ -1,11 +1,15 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.vue';
-import { SITE_METADATA } from '../consts';
+import { ROUTES, SITE_METADATA } from '../constants.ts';
 import '../styles/global.css';
-import { ROUTES } from '../route.ts';
+
+interface Props {
+  title?: string;
+}
 
 const { pathname } = Astro.url;
+const { title } = Astro.props;
 
 const currentRoute = ROUTES.find(route => {
   const cleanPath = pathname.replace(/\/$/, '');
@@ -13,9 +17,15 @@ const currentRoute = ROUTES.find(route => {
   return cleanPath === targetPath;
 });
 
-const displayTitle = currentRoute
-  ? `${currentRoute.name} | ${SITE_METADATA.title}`
-  : SITE_METADATA.title;
+const displayTitle = (() => {
+  if (title) {
+    return `${title} | ${SITE_METADATA.title}`;
+  } else if (currentRoute) {
+    return `${currentRoute.name} | ${SITE_METADATA.title}`;
+  } else {
+    return SITE_METADATA.title;
+  }
+})();
 ---
 
 <!DOCTYPE html>

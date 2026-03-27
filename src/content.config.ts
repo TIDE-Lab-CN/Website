@@ -5,56 +5,59 @@ import { defineCollection } from 'astro:content';
 
 const defaultOrder = 100;
 
-const createFacultySchema = ({ image }: SchemaContext) =>
-  z.object({
+function createFacultySchema({ image }: SchemaContext) {
+  return z.object({
     name: z.string(),
-    avatar: image().optional(),
+    avatar: image(),
     email: z.email().optional(),
     order: z.number().default(defaultOrder),
   });
+}
 
-const createStudentSchema = ({ image }: SchemaContext) =>
-  z.object({
+function createStudentSchema({ image }: SchemaContext) {
+  return z.object({
     name: z.string(),
-    avatar: image().optional(),
+    avatar: image(),
     email: z.email().optional(),
     order: z.number().default(defaultOrder),
     year: z.number(),
     major: z.string(),
   });
+}
 
-const createAlumniSchema = ({ image }: SchemaContext) =>
-  z.object({
+function createAlumniSchema({ image }: SchemaContext) {
+  return z.object({
     name: z.string(),
-    avatar: image().optional(),
+    avatar: image(),
     email: z.email().optional(),
     order: z.number().default(defaultOrder),
     year: z.number(),
     destination: z.string(),
   });
+}
+
+function createActivitiesSchema(_: SchemaContext) {
+  return z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+  });
+}
 
 export const collections = {
   faculty: defineCollection({
-    loader: glob({ pattern: '**/index.md', base: './content/members/faculty' }),
+    loader: glob({ pattern: '**/index.md', base: './src/content/members/faculty' }),
     schema: createFacultySchema,
   }),
   student: defineCollection({
-    loader: glob({ pattern: '**/index.md', base: './content/members/student' }),
+    loader: glob({ pattern: '**/index.md', base: './src/content/members/student' }),
     schema: createStudentSchema,
   }),
   alumni: defineCollection({
-    loader: glob({ pattern: '**/index.md', base: './content/members/alumni' }),
+    loader: glob({ pattern: '**/index.md', base: './src/content/members/alumni' }),
     schema: createAlumniSchema,
   }),
-  projects: defineCollection({
-    loader: glob({ pattern: '**/index.md', base: './content/projects' }),
-    schema: ({ image }: SchemaContext) =>
-      z.object({
-        title: z.string(),
-        description: z.string(),
-        pubDate: z.coerce.date(),
-        heroImage: image().optional(),
-        tags: z.array(z.string()).default([]),
-      }),
+  activities: defineCollection({
+    loader: glob({ pattern: '**/index.md', base: './src/content/activities/news' }),
+    schema: createActivitiesSchema,
   }),
 };
