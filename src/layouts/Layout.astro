@@ -1,37 +1,41 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.vue';
-import {ClientRouter} from 'astro:transitions';
-import {SITE_METADATA} from '../consts';
+import { SITE_METADATA } from '../consts';
 import '../styles/global.css';
 
 interface Props {
-    title?: string;
+  title?: string;
 }
 
-const {title} = Astro.props;
-const displayTitle = title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title;
+const { title } = Astro.props;
+const displayTitle = title
+  ? `${title} | ${SITE_METADATA.title}`
+  : SITE_METADATA.title;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="generator" content={Astro.generator}/>
-    <meta name="description" content={SITE_METADATA.description}/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={SITE_METADATA.description} />
     <title>{displayTitle}</title>
-    <ClientRouter/>
-</head>
-<body class="bg-white text-slate-900 antialiased selection:bg-blue-100 min-h-screen flex flex-col">
-<Navbar client:load/>
+    <ClientRouter />
+  </head>
+  <body class="bg-white text-slate-900 antialiased selection:bg-blue-100 min-h-screen flex flex-col">
+    <Navbar client:load />
 
-<main class="mx-auto max-w-5xl px-4 py-12 lg:py-20 grow">
-    <slot/>
-</main>
+    <main class="mx-auto max-w-5xl px-4 py-12 lg:py-20 grow">
+      <slot />
+    </main>
 
-<footer class="border-t border-slate-100 py-6 sm:py-10 text-center text-sm text-slate-400">
-    <p>© {new Date().getFullYear()} {SITE_METADATA.title}. All rights reserved.</p>
-</footer>
-</body>
+    <footer class="border-t border-slate-100 py-6 sm:py-10 text-center text-sm text-slate-400">
+      <p>
+        © {new Date().getFullYear()} {SITE_METADATA.title}. All rights reserved.
+      </p>
+    </footer>
+  </body>
 </html>
