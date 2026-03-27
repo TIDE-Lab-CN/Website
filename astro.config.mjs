@@ -1,15 +1,21 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
+import visualizer from 'rollup-plugin-visualizer';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [vue(), sitemap()],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      visualizer({
+        emitFile: true,
+        filename: 'stats.html',
+      }),
+    ],
   },
 });
