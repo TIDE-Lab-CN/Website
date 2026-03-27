@@ -11,9 +11,12 @@
       <div class="hidden md:flex items-center gap-8 text-[14px] font-medium text-slate-600">
         <a
           v-for="item in ROUTES"
-          :id="item.path"
+          :key="item.path"
           :href="item.path"
-          class="hover:text-blue-600 transition-colors"
+          :class="[
+            'transition-colors hover:text-blue-600',
+            currentPath === item.path ? 'text-blue-600' : 'text-slate-600',
+          ]"
         >
           {{ item.name }}
         </a>
@@ -57,10 +60,13 @@
       <div class="grow flex flex-col items-center justify-center px-6 gap-8 pb-16 pt-8">
         <a
           v-for="item in ROUTES"
-          :id="item.path"
+          :key="item.path"
           :href="item.path"
           @click="isOpen = false"
-          class="text-lg font-medium text-slate-800"
+          :class="[
+            'text-lg font-medium transition-colors',
+            currentPath === item.path ? 'text-blue-600' : 'text-slate-800',
+          ]"
         >
           {{ item.name }}
         </a>
@@ -75,11 +81,21 @@ import { onMounted, ref } from 'vue';
 import { ROUTES } from '../route.ts';
 
 const isOpen = ref(false);
+const currentPath = ref('/');
 
-onMounted(() => {
+function updateRoutePath() {
+  currentPath.value = window.location.pathname;
+}
+
+function listenAstroSwap() {
   document.addEventListener('astro:after-swap', () => {
     isOpen.value = false;
   });
+}
+
+onMounted(() => {
+  updateRoutePath();
+  listenAstroSwap();
 });
 </script>
 
