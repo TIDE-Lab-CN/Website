@@ -43,6 +43,16 @@ function createActivitiesSchema(_: SchemaContext) {
   });
 }
 
+function createPublicationsSchema({ image }: SchemaContext) {
+  return z.object({
+    title: z.string(),
+    cover: image(),
+    tags: z.array(z.string()).default([]),
+    abstract: z.string(),
+    date: z.coerce.date(),
+  });
+}
+
 export const collections = {
   faculty: defineCollection({
     loader: glob({ pattern: '**/index.md', base: './src/content/members/faculty' }),
@@ -59,5 +69,9 @@ export const collections = {
   activities: defineCollection({
     loader: glob({ pattern: '**/index.md', base: './src/content/activities/news' }),
     schema: createActivitiesSchema,
+  }),
+  projects: defineCollection({
+    loader: glob({ pattern: '**/index.md', base: './src/content/projects' }),
+    schema: createPublicationsSchema,
   }),
 };
