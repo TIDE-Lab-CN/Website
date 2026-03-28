@@ -22,18 +22,6 @@ onMounted(() => {
 });
 </script>
 
-<!--suppress CssUnusedSymbol -->
-<style scoped>
-.vp-menu-enter-active, .vp-menu-leave-active {
-  transition: opacity 0.2s ease, transform 0.25s ease-out;
-}
-
-.vp-menu-enter-from, .vp-menu-leave-to {
-  opacity: 0;
-  transform: translateY(-5px);
-}
-</style>
-
 <template>
   <nav class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-sm w-full h-16 flex items-center">
     <div class="mx-auto max-w-5xl px-4 md:px-6 w-full flex items-center justify-between">
@@ -59,6 +47,7 @@ onMounted(() => {
       </div>
 
       <button
+        aria-label="expand navbar"
         @click="isOpen = !isOpen"
         class="md:hidden p-2 -mr-2 text-slate-600 z-60 relative flex items-center justify-center rounded-lg active:bg-slate-100 transition-colors"
       >
@@ -111,3 +100,15 @@ onMounted(() => {
     </div>
   </Transition>
 </template>
+
+<!--suppress CssUnusedSymbol -->
+<style scoped>
+.vp-menu-enter-active, .vp-menu-leave-active {
+  transition: opacity 0.2s ease, transform 0.25s ease-out;
+}
+
+.vp-menu-enter-from, .vp-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+</style>
