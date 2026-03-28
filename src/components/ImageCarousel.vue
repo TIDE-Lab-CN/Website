@@ -31,7 +31,7 @@ const containerStyle = computed(() => ({
     : 'none',
 }));
 
-const handleTransitionEnd = () => {
+function handleTransitionEnd() {
   isAnimating.value = false;
   if (currentIndex.value >= props.photos.length) {
     isTransitioning.value = false;
@@ -50,57 +50,57 @@ const handleTransitionEnd = () => {
       }, 20);
     });
   }
-};
+}
 
-const next = () => {
+function next() {
   if (isAnimating.value) {
     return;
   }
   isAnimating.value = true;
   currentIndex.value++;
   restartAutoPlay();
-};
+}
 
-const prev = () => {
+function prev() {
   if (isAnimating.value) {
     return;
   }
   isAnimating.value = true;
   currentIndex.value--;
   restartAutoPlay();
-};
+}
 
-const goTo = (index) => {
+function goTo(index) {
   if (isAnimating.value || index === currentIndex.value) {
     return;
   }
   isAnimating.value = true;
   currentIndex.value = index;
   restartAutoPlay();
-};
+}
 
-const startAutoPlay = () => {
+function startAutoPlay() {
   if (props.photos.length > 1) {
     timer = setInterval(next, props.autoPlayInterval);
   }
-};
+}
 
-const stopAutoPlay = () => {
+function stopAutoPlay() {
   if (timer) {
     clearInterval(timer);
   }
-};
+}
 
-const restartAutoPlay = () => {
+function restartAutoPlay() {
   stopAutoPlay();
   startAutoPlay();
-};
+}
 
 function getDisplayClass(index) {
   if (displayIndex.value === index) {
-    return 'bg-white w-8'
+    return 'bg-white w-8';
   } else {
-    return 'bg-white/40 w-2'
+    return 'bg-white/40 w-2';
   }
 }
 

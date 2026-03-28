@@ -37,7 +37,8 @@ onMounted(() => {
           v-for="item in ROUTES"
           :key="item.path"
           :href="item.path"
-          :class="['transition-colors hover:text-blue-600',
+          :class="[
+            'transition-colors hover:text-blue-600',
             currentPath === item.path ? 'text-blue-600' : 'text-slate-600',
           ]"
         >
@@ -87,7 +88,8 @@ onMounted(() => {
           :key="item.path"
           :href="item.path"
           @click="isOpen = false"
-          :class="['text-lg font-medium transition-colors',
+          :class="[
+            'text-lg font-medium transition-colors',
             currentPath === item.path ? 'text-blue-600' : 'text-slate-800',
           ]"
         >
