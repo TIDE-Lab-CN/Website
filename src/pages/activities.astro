@@ -11,59 +11,57 @@ const news = (await getCollection('activities'))
 ---
 
 <Layout>
-  <main class="max-w-6xl mx-auto px-6 py-16">
-    <header class="mb-12">
-      <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">
-        风采活动
-      </h1>
-      <p class="mt-4 text-slate-600 text-lg">
-        探索 TIDE Lab 的科研环境与团队生活。
-      </p>
+  <header class="mb-12">
+    <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">
+      风采活动
+    </h1>
+    <p class="mt-4 text-slate-600 text-lg">
+      探索 TIDE Lab 的科研环境与团队生活。
+    </p>
+  </header>
+
+  <section class="mb-20">
+    <div class="rounded-3xl overflow-hidden shadow-xl bg-slate-5 sm:aspect-21/9">
+      <ImageCarousel
+        client:load
+        photos={photos}
+        autoPlayInterval={5000}
+      />
+    </div>
+  </section>
+
+  <section>
+    <header class="flex items-center mb-12">
+      <h2 class="text-2xl font-bold text-slate-900">
+        最新动态
+      </h2>
+      <div class="ml-4 h-px flex-1 bg-slate-100"></div>
     </header>
 
-    <section class="mb-20">
-      <div class="rounded-3xl overflow-hidden shadow-xl bg-slate-5 sm:aspect-21/9">
-        <ImageCarousel
-          client:load
-          photos={photos}
-          autoPlayInterval={5000}
-        />
-      </div>
-    </section>
-
-    <section>
-      <div class="flex items-center mb-8">
-        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-600">
-          最新动态
-        </h2>
-        <div class="ml-4 h-px flex-1 bg-slate-100"></div>
-      </div>
-
-      <div class="divide-y divide-slate-100">
-        {news.map((item) => (
-          <article class="group">
-            <a
-              href={`/activities/${item.id}`}
-              class="flex items-baseline py-5 transition-colors hover:text-blue-600"
+    <div class="divide-y divide-slate-100">
+      {news.map((item) => (
+        <article class="group">
+          <a
+            href={`/activities/${item.id}`}
+            class="flex items-baseline py-5 transition-colors hover:text-blue-600"
+          >
+            <time
+              class="w-28 shrink-0 text-sm font-medium tabular-nums text-slate-400"
             >
-              <time
-                class="w-28 shrink-0 text-sm font-medium tabular-nums text-slate-400"
-              >
-                {localizeDate(item.data.date)}
-              </time>
+              {localizeDate(item.data.date)}
+            </time>
 
-              <h3 class="text-base font-medium text-slate-700 group-hover:text-blue-600 transition-colors">
-                {item.data.title}
-              </h3>
+            <h3 class="text-base font-medium text-slate-700 group-hover:text-blue-600 transition-colors">
+              {item.data.title}
+            </h3>
 
-              <span
-                class="ml-auto text-slate-300 group-hover:text-blue-400 transition-colors text-xs font-serif"
-              >
-              </span>
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
-  </main>
+            <span
+              class="ml-auto text-slate-300 group-hover:text-blue-400 transition-colors text-xs font-serif"
+            >
+            </span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
 </Layout>
