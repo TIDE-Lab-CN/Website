@@ -6,6 +6,8 @@ const props = defineProps({
   autoPlayInterval: { type: Number, default: 5000 },
 });
 
+const placeholder =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAABwBEABy6Y68AAAAASUVORK5CYII=';
 const currentIndex = ref(0);
 const isAnimating = ref(false);
 const isTransitioning = ref(true);
@@ -109,9 +111,10 @@ onUnmounted(stopAutoPlay);
     >
       <div class="min-w-full h-full relative">
         <img
-          :src="lastPhoto.src"
+          :src="lastPhoto.src || placeholder"
+          :alt="lastPhoto.alt"
+          loading="lazy"
           class="w-full h-full object-cover block"
-          alt=""
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
           <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
@@ -126,8 +129,9 @@ onUnmounted(stopAutoPlay);
         class="min-w-full h-full relative"
       >
         <img
-          :src="photo.src"
+          :src="photo.src || placeholder"
           :alt="photo.alt"
+          loading="lazy"
           class="w-full h-full object-cover block select-none"
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
@@ -139,9 +143,10 @@ onUnmounted(stopAutoPlay);
 
       <div class="min-w-full h-full relative">
         <img
-          :src="firstPhoto.src"
+          :src="firstPhoto.src || placeholder"
+          :alt="firstPhoto.alt"
+          loading="lazy"
           class="w-full h-full object-cover block"
-          alt=""
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
           <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
