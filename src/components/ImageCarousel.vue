@@ -96,26 +96,34 @@ const restartAutoPlay = () => {
   startAutoPlay();
 };
 
+function getDisplayClass(index) {
+  if (displayIndex.value === index) {
+    return 'bg-white w-8'
+  } else {
+    return 'bg-white/40 w-2'
+  }
+}
+
 onMounted(startAutoPlay);
 onUnmounted(stopAutoPlay);
 </script>
 
 <template>
-  <div class="relative group w-full overflow-hidden bg-slate-100 aspect-video sm:aspect-21/9">
+  <div class="overflow-hidden w-full relative bg-slate-100 aspect-video group sm:aspect-21/9">
     <div
       class="flex h-full w-full"
       :style="containerStyle"
       @transitionend="handleTransitionEnd"
     >
-      <div class="min-w-full h-full relative">
+      <div class="h-full min-w-full relative">
         <img
           :src="lastPhoto.src"
           :alt="lastPhoto.alt"
           loading="lazy"
-          class="max-w-full w-dvh h-full object-cover block"
+          class="block object-cover h-full w-dvh max-w-full"
         />
-        <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
-          <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
+        <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
+          <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
             {{ lastPhoto.alt }}
           </p>
         </div>
@@ -124,30 +132,30 @@ onUnmounted(stopAutoPlay);
       <div
         v-for="(photo, index) in photos"
         :key="index"
-        class="min-w-full h-full relative"
+        class="h-full min-w-full relative"
       >
         <img
           :src="photo.src"
           :alt="photo.alt"
           :loading="index === 0 ? 'eager' : 'lazy'"
-          class="max-w-full w-dvh h-full object-cover block select-none"
+          class="block object-cover h-full w-dvh max-w-full select-none"
         />
-        <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
-          <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
+        <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
+          <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
             {{ photo.alt }}
           </p>
         </div>
       </div>
 
-      <div class="min-w-full h-full relative">
+      <div class="h-full min-w-full relative">
         <img
           :src="firstPhoto.src"
           :alt="firstPhoto.alt"
           loading="lazy"
-          class="max-w-full w-dvh h-full object-cover block"
+          class="block object-cover h-full w-dvh max-w-full"
         />
-        <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
-          <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
+        <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
+          <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
             {{ firstPhoto.alt }}
           </p>
         </div>
@@ -157,7 +165,7 @@ onUnmounted(stopAutoPlay);
     <button
       @click="prev"
       :disabled="isAnimating"
-      class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:opacity-0"
+      class="p-3 absolute left-4 top-1/2 z-20 text-white bg-white/20 hover:bg-white/40 rounded-full opacity-0 disabled:opacity-0 group-hover:opacity-100 backdrop-blur-md duration-300 transition-all -translate-y-1/2"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +186,7 @@ onUnmounted(stopAutoPlay);
     <button
       @click="next"
       :disabled="isAnimating"
-      class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:opacity-0"
+      class="p-3 absolute right-4 top-1/2 z-20 text-white bg-white/20 hover:bg-white/40 rounded-full opacity-0 disabled:opacity-0 group-hover:opacity-100 backdrop-blur-md duration-300 transition-all -translate-y-1/2"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -196,16 +204,14 @@ onUnmounted(stopAutoPlay);
       </svg>
     </button>
 
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
+    <div class="flex gap-2.5 absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
       <!--suppress JSUnusedLocalSymbols -->
       <button
         v-for="(_, index) in photos"
         :key="index"
         @click="goTo(index)"
-        class="h-1.5 rounded-full transition-all duration-500"
-        :class="displayIndex === index
-        ? 'bg-white w-8'
-        : 'bg-white/40 w-2'"
+        class="h-1.5 rounded-full duration-500 transition-all"
+        :class="getDisplayClass(index)"
       >
       </button>
     </div>

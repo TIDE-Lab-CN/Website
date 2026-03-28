@@ -23,22 +23,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-sm w-full h-16 flex items-center">
-    <div class="mx-auto max-w-5xl px-4 md:px-6 w-full flex items-center justify-between">
+  <nav class="flex items-center h-16 w-full sticky top-0 z-50 bg-white/95 border-b border-slate-100 backdrop-blur-sm">
+    <div class="flex items-center justify-between mx-auto px-4 md:px-6 w-full max-w-5xl">
       <a
         href="/"
-        class="text-xl font-bold tracking-tighter shrink-0 z-60 relative"
+        class="shrink-0 relative z-60 font-bold text-xl tracking-tighter"
       >
         <span class="text-blue-600">TIDE</span> Lab
       </a>
 
-      <div class="hidden md:flex items-center gap-8 text-[14px] font-medium text-slate-600">
+      <div class="hidden md:flex gap-8 items-center font-medium text-slate-600 text-[14px]">
         <a
           v-for="item in ROUTES"
           :key="item.path"
           :href="item.path"
-          :class="[
-            'transition-colors hover:text-blue-600',
+          :class="['transition-colors hover:text-blue-600',
             currentPath === item.path ? 'text-blue-600' : 'text-slate-600',
           ]"
         >
@@ -49,7 +48,7 @@ onMounted(() => {
       <button
         aria-label="expand navbar"
         @click="isOpen = !isOpen"
-        class="md:hidden p-2 -mr-2 text-slate-600 z-60 relative flex items-center justify-center rounded-lg active:bg-slate-100 transition-colors"
+        class="md:hidden flex items-center justify-center -mr-2 p-2 relative z-60 text-slate-600 active:bg-slate-100 rounded-lg transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,16 +79,15 @@ onMounted(() => {
   <Transition name="vp-menu">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-40 md:hidden bg-white flex flex-col pt-16 h-screen overflow-hidden"
+      class="md:hidden overflow-hidden flex flex-col pt-16 h-screen fixed inset-0 z-40 bg-white"
     >
-      <div class="grow flex flex-col items-center justify-center px-6 gap-8 pb-16 pt-8">
+      <div class="flex flex-col grow gap-8 items-center justify-center pb-16 pt-8 px-6">
         <a
           v-for="item in ROUTES"
           :key="item.path"
           :href="item.path"
           @click="isOpen = false"
-          :class="[
-            'text-lg font-medium transition-colors',
+          :class="['text-lg font-medium transition-colors',
             currentPath === item.path ? 'text-blue-600' : 'text-slate-800',
           ]"
         >

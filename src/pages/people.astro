@@ -33,17 +33,17 @@ const alumni = (await getCollection('alumni'))
 
 <Layout>
   <header class="mb-12">
-    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">团队成员</h1>
-    <p class="text-lg text-slate-600 leading-relaxed">
+    <h1 class="mb-4 font-extrabold text-4xl text-slate-900">团队成员</h1>
+    <p class="leading-relaxed text-lg text-slate-600">
       TIDE Lab 由跨学科研究者组成。
     </p>
   </header>
 
   {faculty.length > 0 && (
     <section class="mb-12">
-      <div class="flex items-center gap-4 mb-10">
-        <h2 class="text-2xl font-bold text-slate-900">指导教师</h2>
-        <div class="h-px bg-slate-200 grow"></div>
+      <div class="flex gap-4 items-center mb-10">
+        <h2 class="font-bold text-2xl text-slate-900">指导教师</h2>
+        <div class="grow h-px bg-slate-200"></div>
       </div>
       <div class="space-y-12">
         {faculty.map((member) => <FacultyCard member={member} />)}
@@ -53,11 +53,11 @@ const alumni = (await getCollection('alumni'))
 
   {students.length > 0 && (
     <section class="mb-12">
-      <div class="flex items-center gap-4 mb-10">
-        <h2 class="text-2xl font-bold text-slate-900">在读学生</h2>
-        <div class="h-px bg-slate-100 grow"></div>
+      <div class="flex gap-4 items-center mb-10">
+        <h2 class="font-bold text-2xl text-slate-900">在读学生</h2>
+        <div class="grow h-px bg-slate-100"></div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-10">
+      <div class="gap-x-6 gap-y-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {students.map((member) => <StudentCard member={member} />)}
       </div>
     </section>
@@ -65,11 +65,11 @@ const alumni = (await getCollection('alumni'))
 
   {alumni.length > 0 && (
     <section class="mb-12">
-      <div class="flex items-center gap-4 mb-10">
-        <h2 class="text-2xl font-bold text-slate-900">毕业校友</h2>
-        <div class="h-px bg-slate-100 grow"></div>
+      <div class="flex gap-4 items-center mb-10">
+        <h2 class="font-bold text-2xl text-slate-900">毕业校友</h2>
+        <div class="grow h-px bg-slate-100"></div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-10">
+      <div class="gap-x-6 gap-y-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {alumni.map((member) => <AlumniCard member={member} />)}
       </div>
     </section>

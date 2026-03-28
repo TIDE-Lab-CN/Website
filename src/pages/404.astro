@@ -3,21 +3,21 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-6 py-16">
-    <p class="text-7xl md:text-8xl font-medium text-slate-900 leading-none tracking-tight">
+  <div class="flex flex-col items-center justify-center px-6 py-16 min-h-[60vh] text-center">
+    <p class="font-medium leading-none text-7xl text-slate-900 tracking-tight md:text-8xl">
       404
     </p>
 
-    <div class="w-12 h-px bg-slate-200 my-4"></div>
+    <div class="my-4 h-px w-12 bg-slate-200"></div>
 
-    <p class="text-slate-500 text-sm md:text-base mb-6 px-4">
+    <p class="mb-6 px-4 text-slate-500 text-sm md:text-base">
       此页面不存在，<br />可能已经被移动或删除。
     </p>
 
     <div class="flex items-center justify-center">
       <a
         href="/"
-        class="px-8 py-2 text-sm font-medium text-slate-600 bg-transparent border border-slate-200 rounded-full hover:border-blue-600 hover:text-blue-600 transition-colors duration-200 active:scale-95"
+        class="px-8 py-2 font-medium text-slate-600 text-sm hover:text-blue-600 bg-transparent border border-slate-200 hover:border-blue-600 rounded-full duration-200 transition-colors active:scale-95"
       >
         回到首页
       </a>

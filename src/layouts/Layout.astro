@@ -34,16 +34,16 @@ const displayTitle = (() => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={SITE_METADATA.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{displayTitle}</title>
     <ClientRouter />
   </head>
-  <body class="bg-white text-slate-900 antialiased selection:bg-blue-100 min-h-screen flex flex-col">
+  <body class="flex flex-col min-h-screen text-slate-900 bg-white selection:bg-blue-100 antialiased">
     <Navbar client:load />
 
-    <div class="mx-auto px-4 py-6 lg:py-12 grow">
+    <div class="grow mx-auto px-4 py-6 lg:py-12">
       <main
         class:list={[
           'max-w-6xl mx-auto px-6 py-6',
@@ -54,7 +54,7 @@ const displayTitle = (() => {
       </main>
     </div>
 
-    <footer class="border-t border-slate-100 py-6 sm:py-10 text-center text-sm text-slate-400">
+    <footer class="py-6 sm:py-10 text-center text-slate-400 text-sm border-slate-100 border-t">
       <p>
         © {new Date().getFullYear()} {SITE_METADATA.title}. All rights reserved.
       </p>
