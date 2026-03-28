@@ -131,7 +131,7 @@ onUnmounted(stopAutoPlay);
         <img
           :src="photo.src || placeholder"
           :alt="photo.alt"
-          loading="lazy"
+          :loading="index === 0 ? 'eager' : 'lazy'"
           class="w-full h-full object-cover block select-none"
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">

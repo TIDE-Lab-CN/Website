@@ -7,6 +7,7 @@ import visualizer from 'rollup-plugin-visualizer';
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   integrations: [vue(), sitemap()],
 
   vite: {
