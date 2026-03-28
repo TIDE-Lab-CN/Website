@@ -6,8 +6,6 @@ const props = defineProps({
   autoPlayInterval: { type: Number, default: 5000 },
 });
 
-const placeholder =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAABwBEABy6Y68AAAAASUVORK5CYII=';
 const currentIndex = ref(0);
 const isAnimating = ref(false);
 const isTransitioning = ref(true);
@@ -111,10 +109,10 @@ onUnmounted(stopAutoPlay);
     >
       <div class="min-w-full h-full relative">
         <img
-          :src="lastPhoto.src || placeholder"
+          :src="lastPhoto.src"
           :alt="lastPhoto.alt"
           loading="lazy"
-          class="w-full h-full object-cover block"
+          class="max-w-full w-dvh h-full object-cover block"
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
           <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
@@ -129,10 +127,10 @@ onUnmounted(stopAutoPlay);
         class="min-w-full h-full relative"
       >
         <img
-          :src="photo.src || placeholder"
+          :src="photo.src"
           :alt="photo.alt"
           :loading="index === 0 ? 'eager' : 'lazy'"
-          class="w-full h-full object-cover block select-none"
+          class="max-w-full w-dvh h-full object-cover block select-none"
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
           <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
@@ -143,10 +141,10 @@ onUnmounted(stopAutoPlay);
 
       <div class="min-w-full h-full relative">
         <img
-          :src="firstPhoto.src || placeholder"
+          :src="firstPhoto.src"
           :alt="firstPhoto.alt"
           loading="lazy"
-          class="w-full h-full object-cover block"
+          class="max-w-full w-dvh h-full object-cover block"
         />
         <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 via-black/10 to-transparent p-6 pt-12">
           <p class="text-white text-sm sm:text-base font-medium drop-shadow-md">
