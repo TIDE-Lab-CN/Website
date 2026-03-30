@@ -22,7 +22,7 @@ const { name, avatar, year, destination } = member.data;
     <p class="font-medium text-slate-500 text-[11px]">{year}届校友</p>
 
     {destination && (
-      <p class="font-medium text-slate-500 text-[11px] line-clamp-1">
+      <p class="font-medium text-slate-500 text-[11px] line-clamp-1" title={destination}>
         去向：{destination}
       </p>
     )}
