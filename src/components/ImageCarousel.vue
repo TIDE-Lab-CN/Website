@@ -120,7 +120,7 @@ onUnmounted(stopAutoPlay);
           :src="lastPhoto.src"
           :alt="lastPhoto.alt"
           loading="lazy"
-          class="block object-cover h-full w-dvh max-w-full"
+          class="block object-cover h-full w-[1000dvh] max-w-full"
         />
         <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
           <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
@@ -138,7 +138,7 @@ onUnmounted(stopAutoPlay);
           :src="photo.src"
           :alt="photo.alt"
           :loading="index === 0 ? 'eager' : 'lazy'"
-          class="block object-cover h-full w-dvh max-w-full select-none"
+          class="block object-cover h-full w-[1000dvh] max-w-full select-none"
         />
         <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
           <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
@@ -152,7 +152,7 @@ onUnmounted(stopAutoPlay);
           :src="firstPhoto.src"
           :alt="firstPhoto.alt"
           loading="lazy"
-          class="block object-cover h-full w-dvh max-w-full"
+          class="block object-cover h-full w-[1000dvh] max-w-full"
         />
         <div class="p-6 pt-12 absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent via-black/10">
           <p class="font-medium text-sm text-white sm:text-base drop-shadow-md">
