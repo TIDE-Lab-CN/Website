@@ -11,7 +11,7 @@ date: "2026-01-13"
 
 #### **1. Time-TK：结合 Transformer 与 KAN 的多偏置时域交互框架**
 
-**标题：** [Time-TK: A Multi-Offset Temporal Interaction Framework Combining Transformer and Kolmogorov-Arnold Networks for Time Series Forecasting](https://arxiv.org/abs/2602.11190)\
+**标题：** [Time-TK: A Multi-Offset Temporal Interaction Framework Combining Transformer and Kolmogorov-Arnold Networks for Time Series Forecasting](https://dl.acm.org/doi/abs/10.1145/3774904.3792618)\
 **作者：** 张帆，樊世明，王桦\
 **核心亮点：** 该研究提出了一种创新的时间序列预测框架 Time-TK。它巧妙地结合了 Transformer 处理长程依赖的能力与 Kolmogorov-Arnold Networks (KAN) 在非线性函数逼近上的优势，通过多偏置机制（Multi-Offset）显著增强了模型对复杂时间动力学的捕捉能力。
 
