@@ -1,6 +1,6 @@
 ---
 name: "王思嵛"
-year: 2023
-major: "计算机软件与理论"
+year: 2026
+destination: "天津大学 (博士)"
 avatar: "./profile.jpg"
 ---
