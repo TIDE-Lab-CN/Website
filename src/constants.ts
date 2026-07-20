@@ -4,6 +4,6 @@ export const SITE_METADATA = {
 };
 export const ROUTES = [
   { path: '/activities', name: '风采活动' },
-  // { path: '/people', name: '团队成员' }, // Current disabled
+  { path: '/people', name: '团队成员' },
   { path: '/projects', name: '研究项目' },
 ];
