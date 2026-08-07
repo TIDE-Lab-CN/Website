@@ -1,6 +1,6 @@
 ---
 name: "张帆"
-email: "zhanfan51@sina.com"
+email: "zhangfan51@sina.com"
 avatar: "./profile.png"
 ---
 
